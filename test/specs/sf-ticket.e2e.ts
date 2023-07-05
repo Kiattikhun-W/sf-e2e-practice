@@ -1,5 +1,6 @@
 import LandingPage from "../pageobjects/landing.page.js";
-
+import ShowTime from "../pageobjects/showtime.page.js";
+import SelectSeat from "../pageobjects/select-seat.page.js";
 describe("SF CINEMA", () => {
   before(async () => {
     await browser.maximizeWindow();
@@ -32,10 +33,23 @@ describe("SF CINEMA", () => {
         this.skip();
       }
     });
-    it("Can select a movie ", async () => {
-      await LandingPage.selectMovie(
-        "Mission: Impossible - Dead Reckoning Part One"
-      );
+    it("Can select movie", async () => {
+      const movieName = "Mission: Impossible - Dead Reckoning Part One";
+      await LandingPage.selectMovie(movieName);
+      await expect(browser).toHaveUrlContaining("showtime");
+    });
+
+    it("Can search cinema by location and select a highlight time", async () => {
+      const cinemaLocation = "Buriram";
+      await ShowTime.searchMovieBar.setValue(cinemaLocation);
+      await ShowTime.showTimeActiveBtn.click();
+      await expect(browser).toHaveUrlContaining("select-seat");
+      await browser.pause(5000);
+    });
+
+    it("Can select a seat", async () => {
+      const seats = ["H1", "H2"];
+      await SelectSeat.selectSeat(seats);
       await browser.pause(5000);
     });
   });
