@@ -3,7 +3,7 @@ import ShowTime from "../pageobjects/showtime.page.js";
 import SelectSeat from "../pageobjects/select-seat.page.js";
 describe("SF CINEMA", () => {
   before(async () => {});
-  describe(" Landing Page functionality", () => {
+  describe("Landing Page functionality", () => {
     beforeEach(async function () {
       await browser.reloadSession();
       await browser.maximizeWindow();
@@ -17,6 +17,10 @@ describe("SF CINEMA", () => {
 
     it("Can change lauange", async function () {
       await LandingPage.changeLanguage();
+    });
+
+    it("Can open login modal", async function () {
+      await LandingPage.openLoginModal();
     });
 
     // it("Can select movie", async () => {

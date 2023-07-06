@@ -13,8 +13,11 @@ class LandingPage extends Page {
     return $(".cover-page");
   }
 
-  get signIn() {
+  get signinBtn() {
     return $("li.signin");
+  }
+  get signinModal() {
+    return $(".popup-signin");
   }
 
   get langSwitcher() {
@@ -46,15 +49,15 @@ class LandingPage extends Page {
   }
 
   public async changeLanguage() {
-    await expect(this.signIn).toBeExisting();
+    await expect(this.signinBtn).toBeExisting();
 
-    const signInText = await (await this.signIn).getText();
+    const signInText = await (await this.signinBtn).getText();
     if (!signInText.match(/.*Login.*/g)) {
       await (await this.engLang).click();
-      await expect(this.signIn).toHaveTextContaining("Login");
+      await expect(this.signinBtn).toHaveTextContaining("Login");
     } else {
       await (await this.engLang).click();
-      await expect(this.signIn).toHaveTextContaining("เข้าสู่ระบบ");
+      await expect(this.signinBtn).toHaveTextContaining("เข้าสู่ระบบ");
     }
   }
 
@@ -72,6 +75,11 @@ class LandingPage extends Page {
         break;
       }
     }
+  }
+  public async openLoginModal() {
+    await expect(this.signinBtn).toBeExisting();
+    await (await this.signinBtn).click();
+    await expect(this.signinModal).toBeExisting();
   }
 }
 
