@@ -5,7 +5,7 @@ describe("SF CINEMA", () => {
   before(async () => {
     await browser.maximizeWindow();
   });
-  describe("Landing Page", () => {
+  describe(" Landing Page functionality", () => {
     it("Should see a landing page with a Privacy Modal ", async () => {
       await LandingPage.open();
       await expect(LandingPage.privacyPolicyModal).toBeExisting();
@@ -38,17 +38,19 @@ describe("SF CINEMA", () => {
       await LandingPage.selectMovie(movieName);
       await expect(browser).toHaveUrlContaining("showtime");
     });
-
-    it("Can search cinema by location and select a highlight time", async () => {
-      const cinemaLocation = "Buriram";
-      await ShowTime.searchMovieBar.setValue(cinemaLocation);
-      await ShowTime.showTimeActiveBtn.click();
-      await expect(browser).toHaveUrlContaining("select-seat");
+    describe("Showtime Page", () => {
+      it("Can search cinema by location and select a highlight time", async () => {
+        const cinemaLocation = "Buriram";
+        await ShowTime.searchMovieBar.setValue(cinemaLocation);
+        await ShowTime.showTimeActiveBtn.click();
+        await expect(browser).toHaveUrlContaining("select-seat");
+      });
     });
-
-    it("Can select a seat", async () => {
-      const seats = ["H1", "H2"];
-      await SelectSeat.selectSeat(seats);
+    describe("Select Seat Page", () => {
+      it("Can select a seat", async () => {
+        const seats = ["H1", "H2"];
+        await SelectSeat.selectSeat(seats);
+      });
     });
   });
 });
