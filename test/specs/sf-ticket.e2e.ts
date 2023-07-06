@@ -27,7 +27,7 @@ describe("SF CINEMA", () => {
       await LandingPage.openMovieMenu();
     });
   });
-  describe("Resever seat functionality", () => {
+  describe("Reserve seat functionality", () => {
     /* 
       Prequsite:
       - Landing Page is opened
@@ -50,8 +50,17 @@ describe("SF CINEMA", () => {
 
     it("Can reserve seat from the landing page", async () => {
       const movieName = "Mission: Impossible - Dead Reckoning Part One";
+      const cinemaLocation = "Buriram";
+      const seats = ["H1", "H2"];
+
       await LandingPage.selectMovie(movieName);
       await expect(browser).toHaveUrlContaining("showtime");
+
+      await ShowTime.searchMovieBar.setValue(cinemaLocation);
+      await ShowTime.showTimeActiveBtn.click();
+
+      await expect(browser).toHaveUrlContaining("select-seat");
+      await SelectSeat.selectSeat(seats);
     });
   });
 });
