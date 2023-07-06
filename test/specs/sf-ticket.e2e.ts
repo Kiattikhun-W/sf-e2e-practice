@@ -6,11 +6,9 @@ describe("SF CINEMA", () => {
     await browser.maximizeWindow();
   });
   describe(" Landing Page functionality", () => {
-    it("Should see a landing page with a Privacy Modal ", async () => {
+    it("Should see a landing page with a privacy modal and can close it", async () => {
       await LandingPage.open();
       await expect(LandingPage.privacyPolicyModal).toBeExisting();
-    });
-    it("Should close the Privacy Modal ", async () => {
       await LandingPage.privacyPolicyModalCloseButton.click();
       await expect(LandingPage.privacyPolicyModal).not.toBeExisting();
     });
