@@ -44,13 +44,11 @@ describe("SF CINEMA", () => {
       await ShowTime.searchMovieBar.setValue(cinemaLocation);
       await ShowTime.showTimeActiveBtn.click();
       await expect(browser).toHaveUrlContaining("select-seat");
-      await browser.pause(5000);
     });
 
     it("Can select a seat", async () => {
       const seats = ["H1", "H2"];
       await SelectSeat.selectSeat(seats);
-      await browser.pause(5000);
     });
   });
 });
