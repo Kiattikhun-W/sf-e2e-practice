@@ -33,6 +33,17 @@ class LandingPage extends Page {
     return super.open("");
   }
 
+  public async changeLanguage() {
+    const signInText = await (await this.signIn).getText();
+    if (!signInText.match(/.*Login.*/g)) {
+      await (await this.engLang).click();
+      await expect(this.signIn).toHaveTextContaining("Login");
+    } else {
+      await (await this.engLang).click();
+      await expect(this.signIn).toHaveTextContaining("เข้าสู่ระบบ");
+    }
+  }
+
   public async selectMovie(movieName: string) {
     const movieLists = await this.movieLists;
 
