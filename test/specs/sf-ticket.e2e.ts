@@ -23,6 +23,10 @@ describe("SF CINEMA", () => {
       await LandingPage.openLoginModal();
     });
 
+    it("Can open movie menu", async function () {
+      await LandingPage.openMovieMenu();
+    });
+
     // it("Can select movie", async () => {
     //   const movieName = "Mission: Impossible - Dead Reckoning Part One";
     //   await LandingPage.selectMovie(movieName);

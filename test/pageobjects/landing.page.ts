@@ -32,6 +32,10 @@ class LandingPage extends Page {
     return $("ul.lang-switcher li:nth-child(2)");
   }
 
+  get movieMenuBtn() {
+    return $(".navigation.nav-normal >ul > li:nth-child(2) > a");
+  }
+
   get movieLists() {
     return $$(".movie-card.flex-item");
   }
@@ -84,6 +88,15 @@ class LandingPage extends Page {
     await expect(this.signinBtn).toBeExisting();
     await (await this.signinBtn).click();
     await expect(this.signinModal).toBeExisting();
+  }
+  public async openMovieMenu() {
+    await expect(this.movieMenuBtn).toBeExisting();
+    await (await this.movieMenuBtn).click();
+    await expect(this.movieMenuBtn).toHaveAttributeContaining(
+      "class",
+      "active"
+    );
+    await expect(browser).toHaveUrlContaining("movies");
   }
 }
 
