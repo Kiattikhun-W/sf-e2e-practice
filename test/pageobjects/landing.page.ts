@@ -24,7 +24,11 @@ class LandingPage extends Page {
     return $("ul.lang-switcher");
   }
 
-  get engLang() {
+  get thLangBtn() {
+    return $("ul.lang-switcher li:nth-child(1)");
+  }
+
+  get engLangBtn() {
     return $("ul.lang-switcher li:nth-child(2)");
   }
 
@@ -53,10 +57,10 @@ class LandingPage extends Page {
 
     const signInText = await (await this.signinBtn).getText();
     if (!signInText.match(/.*Login.*/g)) {
-      await (await this.engLang).click();
+      await (await this.engLangBtn).click();
       await expect(this.signinBtn).toHaveTextContaining("Login");
     } else {
-      await (await this.engLang).click();
+      await (await this.thLangBtn).click();
       await expect(this.signinBtn).toHaveTextContaining("เข้าสู่ระบบ");
     }
   }
