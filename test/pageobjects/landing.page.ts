@@ -33,7 +33,21 @@ class LandingPage extends Page {
     return super.open("");
   }
 
+  public async preparePageStartUp() {
+    await expect(this.privacyPolicyModal).toBeExisting();
+    await this.privacyPolicyModalCloseButton.click();
+    await expect(this.privacyPolicyModal).not.toBeExisting();
+
+    const isHaveCoverPage = (await this.getCoverPage).isExisting();
+    if (isHaveCoverPage) {
+      await this.getCoverPage.click();
+      await expect(this.getCoverPage).not.toBeExisting();
+    }
+  }
+
   public async changeLanguage() {
+    await expect(this.signIn).toBeExisting();
+
     const signInText = await (await this.signIn).getText();
     if (!signInText.match(/.*Login.*/g)) {
       await (await this.engLang).click();
