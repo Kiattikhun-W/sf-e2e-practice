@@ -1,6 +1,6 @@
 import Page from "./page.js";
 
-class ShowTime extends Page {
+class ShowTimePage extends Page {
   get searchMovieBar() {
     return $(".input-wrapper > input");
   }
@@ -9,4 +9,4 @@ class ShowTime extends Page {
   }
 }
 
-export default new ShowTime();
+export default new ShowTimePage();

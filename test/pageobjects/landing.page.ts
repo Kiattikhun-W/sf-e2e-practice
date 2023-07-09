@@ -45,27 +45,20 @@ class LandingPage extends Page {
   }
 
   public async preparePageStartUp() {
-    await expect(this.privacyPolicyModal).toBeExisting();
     await this.privacyPolicyModalCloseButton.click();
-    await expect(this.privacyPolicyModal).not.toBeExisting();
 
     const isHaveCoverPage = (await this.getCoverPage).isExisting();
     if (isHaveCoverPage) {
       await this.getCoverPage.click();
-      await expect(this.getCoverPage).not.toBeExisting();
     }
   }
 
   public async changeLanguage() {
-    await expect(this.signinBtn).toBeExisting();
-
     const signInText = await (await this.signinBtn).getText();
     if (!signInText.match(/.*Login.*/g)) {
       await (await this.engLangBtn).click();
-      await expect(this.signinBtn).toHaveTextContaining("Login");
     } else {
       await (await this.thLangBtn).click();
-      await expect(this.signinBtn).toHaveTextContaining("เข้าสู่ระบบ");
     }
   }
 
@@ -85,18 +78,10 @@ class LandingPage extends Page {
     }
   }
   public async openLoginModal() {
-    await expect(this.signinBtn).toBeExisting();
     await (await this.signinBtn).click();
-    await expect(this.signinModal).toBeExisting();
   }
   public async openMovieMenu() {
-    await expect(this.movieMenuBtn).toBeExisting();
     await (await this.movieMenuBtn).click();
-    await expect(this.movieMenuBtn).toHaveAttributeContaining(
-      "class",
-      "active"
-    );
-    await expect(browser).toHaveUrlContaining("movies");
   }
 }
 

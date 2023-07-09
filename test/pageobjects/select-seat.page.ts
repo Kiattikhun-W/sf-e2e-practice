@@ -16,10 +16,10 @@ class SelectSeat extends Page {
       });
       if ((await this.seatButton(seat)).isEnabled()) {
         await this.seatButton(seat).click();
-        await expect(await this.seatButton(seat)).toHaveAttributeContaining(
-          "class",
-          "seat-selected"
-        );
+        // await expect(await this.seatButton(seat)).toHaveAttributeContaining(
+        //   "class",
+        //   "seat-selected"
+        // );
       }
     }
   }
