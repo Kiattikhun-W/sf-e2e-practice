@@ -67,8 +67,7 @@ describe("SF CINEMA", () => {
       await LandingPage.selectMovie(movieName);
       await expect(browser).toHaveUrlContaining("showtime");
 
-      await ShowTimePage.searchMovieBar.setValue(cinemaLocation);
-      await ShowTimePage.showTimeActiveBtn.click();
+      await ShowTimePage.setCinemaLocation(cinemaLocation);
 
       await expect(browser).toHaveUrlContaining("select-seat");
       await SelectSeat.selectSeat(seats);
