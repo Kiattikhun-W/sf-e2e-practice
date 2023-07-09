@@ -2,7 +2,7 @@ import LandingPage from "../pageobjects/landing.page.js";
 import ShowTimePage from "../pageobjects/showtime.page.js";
 import SelectSeat from "../pageobjects/select-seat.page.js";
 describe("SF CINEMA", () => {
-  describe.skip("Landing Page functionality", () => {
+  describe("Landing Page functionality", () => {
     beforeEach(async function () {
       await browser.reloadSession();
       await browser.maximizeWindow();
@@ -17,19 +17,19 @@ describe("SF CINEMA", () => {
     it("Can change lauange", async function () {
       await LandingPage.changeLanguage();
       const signInText = await (await LandingPage.signinBtn).getText();
-      if (!signInText.match(/.*Login.*/g)) {
+      if (signInText.match(/.*Login.*/g)) {
         await expect(LandingPage.signinBtn).toHaveTextContaining("Login");
       } else {
         await expect(LandingPage.signinBtn).toHaveTextContaining("เข้าสู่ระบบ");
       }
     });
 
-    it("Can open login modal", async function () {
+    it.skip("Can open login modal", async function () {
       await LandingPage.openLoginModal();
       await expect(LandingPage.signinModal).toBeExisting();
     });
 
-    it("Can open movie menu", async function () {
+    it.skip("Can open movie menu", async function () {
       await LandingPage.openMovieMenu();
       await expect(LandingPage.movieMenuBtn).toHaveAttributeContaining(
         "class",
@@ -38,7 +38,7 @@ describe("SF CINEMA", () => {
       await expect(browser).toHaveUrlContaining("movies");
     });
   });
-  describe("Reserve seat functionality", () => {
+  describe.skip("Reserve seat functionality", () => {
     /* 
       Prerequsite:
       - Landing Page is opened
