@@ -2,7 +2,7 @@ import LandingPage from "../pageobjects/landing.page.js";
 import ShowTimePage from "../pageobjects/showtime.page.js";
 import SelectSeat from "../pageobjects/select-seat.page.js";
 describe("SF CINEMA", () => {
-  describe("Landing Page functionality", () => {
+  describe.skip("Landing Page functionality", () => {
     beforeEach(async function () {
       await browser.reloadSession();
       await browser.maximizeWindow();
@@ -24,12 +24,12 @@ describe("SF CINEMA", () => {
       }
     });
 
-    it.skip("Can open login modal", async function () {
+    it("Can open login modal", async function () {
       await LandingPage.openLoginModal();
       await expect(LandingPage.signinModal).toBeExisting();
     });
 
-    it.skip("Can open movie menu", async function () {
+    it("Can open movie menu", async function () {
       await LandingPage.openMovieMenu();
       await expect(LandingPage.movieMenuBtn).toHaveAttributeContaining(
         "class",
@@ -38,7 +38,7 @@ describe("SF CINEMA", () => {
       await expect(browser).toHaveUrlContaining("movies");
     });
   });
-  describe.skip("Reserve seat functionality", () => {
+  describe("Reserve seat functionality", () => {
     /* 
       Prerequsite:
       - Landing Page is opened
@@ -71,6 +71,12 @@ describe("SF CINEMA", () => {
 
       await expect(browser).toHaveUrlContaining("select-seat");
       await SelectSeat.selectSeat(seats);
+
+      for (const seat of seats) {
+        await expect(
+          await SelectSeat.seatButton(seat)
+        ).toHaveAttributeContaining("class", "seat-selected");
+      }
     });
   });
 });

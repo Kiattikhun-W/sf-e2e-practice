@@ -47,7 +47,9 @@ class LandingPage extends Page {
   public async preparePageStartUp() {
     await this.privacyPolicyModalCloseButton.click();
 
-    const isHaveCoverPage = (await this.getCoverPage).isExisting();
+    const isHaveCoverPage: boolean = await (
+      await this.getCoverPage
+    ).isExisting();
     if (isHaveCoverPage) {
       await this.getCoverPage.click();
     }
